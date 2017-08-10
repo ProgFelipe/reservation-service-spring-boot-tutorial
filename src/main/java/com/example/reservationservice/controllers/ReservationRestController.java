@@ -8,14 +8,14 @@ package com.example.reservationservice.controllers;
 import com.example.reservationservice.domain.Reservation;
 import com.example.reservationservice.repositories.ReservationRepository;
 import java.util.Collection;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 /**
  *
  * @author Felipe
  */
-@RestController
+@Controller
 public class ReservationRestController {
     private final ReservationRepository reservationRepository;
 
@@ -26,5 +26,11 @@ public class ReservationRestController {
     @GetMapping("/reservations")
     Collection<Reservation> reservations() {
         return reservationRepository.findAll();
+    }
+    
+    @GetMapping("/")
+    public String getHome(Model model){
+        model.addAttribute("reservations", reservationRepository.findAll());
+        return "index";
     }
 }

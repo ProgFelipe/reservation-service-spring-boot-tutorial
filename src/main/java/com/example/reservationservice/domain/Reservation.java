@@ -34,4 +34,5 @@ public class Reservation {
     private Long id;
 
     private String reservationName; // reservation_name
+    private String title;
 }
